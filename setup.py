@@ -25,6 +25,8 @@ setup(name='collective.thememanager',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.app.theming',
+          'plone.app.dexterity',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
