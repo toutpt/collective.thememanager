@@ -1,2 +1,0 @@
-from collectivethememanagerlayer import IThemeManagerLayer
-

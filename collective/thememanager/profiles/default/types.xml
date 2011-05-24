@@ -1,0 +1,3 @@
+<object name="portal_types">
+ <object name="collective.thememanager.theme" meta_type="Dexterity FTI" />
+</object>

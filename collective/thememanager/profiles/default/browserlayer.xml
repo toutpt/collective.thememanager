@@ -3,7 +3,7 @@
     <!-- -*- extra stuff goes here -*- -->
 
     <layer name="CollectiveThememanager"
-        interface="collective.thememanager.interfaces.collectivethememanagerlayer.IThemeManagerLayer"
+        interface="collective.thememanager.interfaces.IThemeManagerLayer"
     />
 </layers>
 
