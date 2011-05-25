@@ -6,6 +6,7 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.thememanager">
 
+  <include package="plone.app.theming"/>
   <five:registerPackage package="." initialize=".initialize" />
   <i18n:registerTranslations directory="locales"/>
   <genericsetup:registerProfile
@@ -18,6 +19,11 @@
   <!-- -*- extra stuff goes here -*- -->
 
   <i18n:registerTranslations directory="locales" />
+    <utility
+      factory=".manager.Manager"
+      provides=".interfaces.IThemeManager"
+    />
+
   <include package=".browser"/>
 
 </configure>

@@ -314,7 +314,34 @@
                         />
                     
                 </div>
-                
+
+
+                <div
+                    class="field"
+                    tal:define="error errors/proxytheme | nothing"
+                    tal:attributes="class python:'field error' if error else 'field'">
+                    
+                    <label for="proxytheme" i18n:translate="">Remote Theme</label>
+                    
+                    <div class="formHelp" i18n:translate="">
+                    Select a theme in the list
+                    </div>
+                    
+                    <div tal:content="error" tal:condition="error" />
+                    
+                    <table tal:define="tm view/thememanager">
+                      <tr>
+                        <th>Select</th>
+                        <th>Theme name</th>
+                      </tr>
+                      <tr tal:repeat="theme tm/getThemes">
+                        <td><input type="radio" name="theme" tal:attributes="value theme/id"/></td>
+                        <td><span tal:content="theme/title"/></td>
+                      </tr>
+                    </table>
+                </div>
+
+
                 <div
                     class="field"
                     tal:define="selected python:request.get('enableNewTheme', True)">

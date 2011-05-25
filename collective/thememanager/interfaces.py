@@ -5,7 +5,7 @@ from plone.app.theming import interfaces as base
 
 class ITheme(interface.Interface):
     """An proxied diazo theme (remote version)"""
-    name = schema.TextLine(title=u"Theme id")
+    title = schema.TextLine(title=u"Theme id")
     description = schema.Text(title=u"description")
     picture = schema.URI(title=u"URL of a screenshot")
     url = schema.URI(title=u"Presentation page url")

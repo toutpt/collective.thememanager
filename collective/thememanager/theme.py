@@ -5,10 +5,14 @@ from plone.namedfile import field as filefield
 from collective.thememanager import interfaces
 from collective.thememanager import i18n
 
-class ProxyTheme(object):
+class Theme(object):
     interface.implements(interfaces.ITheme)
-    def __init__(self, provider):
+    def __init__(self, provider, **kwargs):
         self.provider = provider
+        for name in kwargs:
+            setattr(self, name, kwargs[name])
+        self.id = kwargs['zipurl']
+
 
 class ThemeSchema(form.Schema):
     """Theme schema"""

@@ -1,4 +1,4 @@
-
+import json
 from urllib2 import urlopen
 
 from zope import interface
@@ -15,12 +15,18 @@ class Provider(object):
         self._initialized = False
 
     def getThemeIds(self):
+        if not self.themes:
+            self._initialize()
         return self.themes.keys()
 
     def getThemeById(self, id):
+        if not self.themes:
+            self._initialize()
         return self.themes.get(id,None)
 
     def getThemes(self):
+        if not self.themes:
+            self._initialize()
         return self.themes.values()
 
 #TODO: memoize
@@ -34,14 +40,15 @@ class Provider(object):
         if download.info().type != 'application/json':
             raise Exception, 'Is not json mimetype'
         content = download.read()
-        d = json.loads(content)
-        metathemes = d['themes']
-        themeids = self.getThemeIds()
-        for metatheme in metathemes:
-            if metatheme['zipurl'] in themeids:
+        themesinfos = json.loads(content)
+        themeids = []
+
+        for themeinfos in themesinfos:
+            if themeinfos['zipurl'] in themeids:
                 continue
-            t = theme.Theme(self, **metatheme)
-            self.themes[t.zipurl] = t
+            themeids.append(themeinfos['zipurl'])
+            themeObj = theme.Theme(self, **themeinfos)
+            self.themes[themeObj.zipurl] = themeObj
         self._initialized=True
 
 
