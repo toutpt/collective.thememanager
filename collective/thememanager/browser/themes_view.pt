@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="collective.thememanager">
+
+<body>
+
+    <h1 class="documentFirstHeading" metal:fill-slot="content-title"
+        i18n:translate="">Themes</h1>
+
+<div metal:fill-slot="content-core">
+<div class="photoAlbum">
+    <div class="photoAlbumEntry" tal:repeat="theme view/themes">
+       <a tal:attributes="href theme/url">
+           <span class="photoAlbumEntryWrapper">
+             <img class="theme-image" tal:attributes="src string:${theme/picture}/thumb" />
+           </span>
+           <span class="photoAlbumEntryTitle" tal:content="theme/title">
+              Theme title
+           </span>
+       </a>
+    </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.photoAlbum .theme-image').prepOverlay({
+             subtype: 'image',
+             urlmatch: '/picture/thumb',
+             urlreplace: '/picture/large'
+            });
+});
+</script>
+</div>
+</body>
+</html>

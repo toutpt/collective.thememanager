@@ -1,4 +1,3 @@
-import json
 
 from urllib2 import urlopen
 
@@ -48,25 +47,22 @@ class Provider(object):
 
 from Products.Five import BrowserView
 
-class JSONProviderView(BrowserView):
+class ProviderController(BrowserView):
     """A view to create a json input to create a proxy provider"""
-    def __call__(self):
-        metadatas = self.getThemesMetadatas()
-        metadatas_json = json.dumps(metadatas)
-        return metadatas_json
 
     #TODO: memoize
-    def getThemesMetadatas(self):
+    def getThemes(self):
         catalog = getToolByName(self.context, 'portal_catalog')
-        brains = catalog(portal_type='Theme')
+        brains = catalog(portal_type='collective.thememanager.theme')
         objs = [brain.getObject() for brain in brains]
         def metadata(ob):
-            return {'name':ob.Title(),
+            url = ob.absolute_url()
+            return {'title':ob.Title(),
                     'description':ob.Description(),
-                    'picture':'',
-                    'url':ob.absolute_url(),
-                    'zipurl':'',
-                    'authorname':ob.Creators()[0],
-                    'version':ob.ModifiedDate()}
+                    'picture':url+'/@@images/picture',
+                    'url':url,
+                    'zipurl':url+'/@@download/zip',
+                    'author':ob.author,
+                    'version':ob.version}
         metadatas = map(metadata, objs)
         return metadatas

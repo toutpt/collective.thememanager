@@ -1,23 +1,17 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser"
            i18n_domain="collective.thememanager">
-    <!-- -*- extra stuff goes here -*- -->
-
-    <!-- If you are using plone version 3.0, you will need to include the 
-         plone.browserlayer package in your buildout and uncomment the following
-         line in order to use IThemeManagerLayer as a layer attribute -->
-    <!-- 
-    <include package="plone.browserlayer" />
-    -->
-    <!-- Example of browser component with IThemeManagerLayer layer attribute -->
-    <!-- 
-    <browser:page
-        name="my-view"
-        for="*"
-        permission="zope.Public"
-        template="my-view.pt"
-        layer="..interfaces.IThemeManagerLayer"
-        />
-    -->
-
+  <browser:page
+    name="themes_view"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".themes_view.ThemesView"
+    template="themes_view.pt"
+    permission="zope2.View"
+    />
+  <browser:page
+    name="themes_json"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".themes_json.ThemesJSON"
+    permission="zope2.View"
+    />
 </configure>
