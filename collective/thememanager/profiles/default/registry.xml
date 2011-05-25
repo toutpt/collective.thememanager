@@ -1,0 +1,11 @@
+<registry>
+    <record name="collective.thememanager.sourceslist">
+        <field type="plone.registry.field.List">
+            <title>Sources List</title>
+            <description>A list of theme provider</description>
+            <value_type type="plone.registry.field.URI" />
+        </field>
+        <value>
+        </value>
+    </record>
+</registry>
