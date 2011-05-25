@@ -7,11 +7,21 @@
     class=".themes_view.ThemesView"
     template="themes_view.pt"
     permission="zope2.View"
+    layer="collective.thememanager.interfaces.IThemeManagerLayer"
     />
   <browser:page
     name="themes_json"
     for="Products.CMFPlone.interfaces.IPloneSiteRoot"
     class=".themes_json.ThemesJSON"
     permission="zope2.View"
+    layer="collective.thememanager.interfaces.IThemeManagerLayer"
     />
+  <browser:page 
+    name="theming-controlpanel"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+    class=".controlpanel.ThemingControlpanel"
+    template="controlpanel.pt"
+    permission="cmf.ManagePortal"
+    layer="collective.thememanager.interfaces.IThemeManagerLayer"
+      />
 </configure>
