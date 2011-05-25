@@ -37,18 +37,9 @@ class IThemeManager(IThemeProvider):
         is the first, it as precedence on all other ones. It is like the
         custom folder in portal_skin."""
 
-    def addProxyThemeProvider(url):
-        """Add a theme provider"""
-
 #FRAMEWORK RELATED INTERFACES
 
 class IThemeManagerLayer(interface.Interface):
     """ A layer specific to this product. 
         Is registered using browserlayer.xml
     """
-
-class IThemeSourcesListFormSchema(interface.Interface):
-    """A sources list of theme is a url to a remote """
-    sources_list = schema.List(title=u"Sources list",
-                               required=True,
-                               value_type=schema.URI(title=u"theme provider url"))
